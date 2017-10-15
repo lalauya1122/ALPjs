@@ -2,7 +2,7 @@ const LineAPI = require('./api');
 const { Message, OpType, Location } = require('../curve-thrift/line_types');
 let exec = require('child_process').exec;
 
-const myBot = ['u6de2fd0d3f168038814531c1fb8fb7dc'];
+const myBot = ['ua900e1ba4a91a01b7de658f26471c510'];
 
 
 function isAdminOrBot(param) {
@@ -16,8 +16,8 @@ class LINE extends LineAPI {
         this.receiverID = '';
         this.checkReader = [];
         this.stateStatus = {
-            ac: 0,
-            ak: 0,
+            ac: 1,
+            ak: 1,
         }
     }
 
@@ -120,7 +120,7 @@ class LINE extends LineAPI {
             this.stateStatus[action] = state;
             this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}`);
         } else {
-            this._sendMessage(seq,`Kamu bukan admin.`);
+            this._sendMessage(seq,`Kamu bukan admin pekok.`);
         }
     }
 
@@ -206,9 +206,9 @@ class LINE extends LineAPI {
 	}
 
         if(txt == 'a:speed') {
-            const curTime = (Date.now() / 1000);
-            await this._sendMessage(seq,'Processing....');
-            const rtime = (Date.now() / 1000) - curTime;
+            const curTime = (Date.now() / 9000);
+            await this._sendMessage(seq,'Tunggu bos....');
+            const rtime = (Date.now() / 9000) - curTime;
             await this._sendMessage(seq, `${rtime} second(s)`);
         }
 
@@ -250,7 +250,7 @@ class LINE extends LineAPI {
             this._sendMessage(seq,seq.contentMetadata.mid);
         }
 	
-        const action = ['ac on','ac off','ak on','ak off']
+        const action = ['kick on','kick off','kick on','kick off']
         if(action.includes(txt)) {
             this.setState(seq)
         } 
